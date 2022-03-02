@@ -8,18 +8,18 @@ function Country(name, short, capital, population, flag, continent) {
 }
 
 // Components
-const header = (logo) => {
+/* const header = (logo) => {
     return `
     <header>
         <a id="logo">${logo}</a>
         <button></button>
     </header>
     `
-}
+} */
 
 
 // Code from yesterday
-const countrySection = (id, h1) => {
+const countrySection = (h1) => {
     return `
     <div>
         <h1>${h1}</h1>
@@ -28,31 +28,25 @@ const countrySection = (id, h1) => {
 }
 
 
-
 // 3 Components = HTML elements we would like to add to the document later
 
-const countryCard = (name, short, population, continet, flag) => {
+const countryCard = (name, short, population, flag, continent) => {
     return `
-    <div class="card">
-        <h1>${name}</h1>
-        <p>${short}</p>
-        <p>${population}</p>
-        <p>${continent}</p>
-        <p>${flag}</p>
-    </div>
-    `
+        <div class="card">
+            <h1>${country.name}</h1>
+            <p>${country.short}</p>
+            <p>${country.population}</p>
+            <p>${country.continent}</p>
+            <p>"${country.flag}"</p>
+        </div>
+    `;
 }
 
-const countryCards = (country, callCountryCard) => {
-    let toReturn = "";
-    for (let i = 1; i <= 100; i++) {
-        // uj fogalom - callback fuggveny - nem ott futtatjuk, ahol szeretnenk hasznalni, hane majd kesobb, amikor itt az ideje lefuttatni
-        toReturn += callCountryCard(country.name.common, country.cca3, country.population, country.continents[0], country.flags.svg);
-    }
-    return toReturn;
-}
-// End of code from yesterday
-
+const countryCards = (contentHTML) => {
+    return`
+        <section class="country-cards">&{contentHTML}</section>
+    `;
+};
 
 
 const loadEvent = async _ => {
@@ -73,39 +67,18 @@ const loadEvent = async _ => {
     })
     console.log(countries);
     //fuggvenyeket elemeket const-tal mentjuk le
-    const rootElement = document.getElementById("root");
-    rootElement.insertAdjacentHTML("beforeend", header("Countries"));
 
-
-    // CODE FROM WEEK 1 - this works
-
-    /* for (const country of countryArr) {
-        //console.log(country.name.common);
-        
-        root.insertAdjacentHTML("beforeend", `
-            <section>
-                <h1>${country.name.common}</h1>
-                <p>${country.cca3}</p>
-                <p>${country.cca3}</p>
-                <p>${country.population}</p>
-                <p>${country.continents[0]}</p>
-                <p>${country.flags.svg}</p>
-            </section>
-        `)
-        
-    } */
-
-    let content = ""
+    let cards = ""
 
     for (const country of countries) {
-        content += countrySection(country.name.common,country.cca3, countryCards(country, countryCard));
+        cards += countrySection(country.name.common, country.cca3);
     }  
-    document.getElementById("root").insertAdjacentHTML("beforeend", content);
+    
+    const rootElement = document.getElementById("root");
+    rootElement.insertAdjacentHTML("beforeend", cards);
 
 }
-
 window.addEventListener("load", loadEvent); 
-
 
 
 
