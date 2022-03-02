@@ -45,7 +45,7 @@ const countryCard = (name, short, population, continet, flag) => {
     `
 }
 
-const countryCard = (month, callCountryCard) => {
+const countryCards = (month, callCountryCard) => {
     let toReturn = "";
     for (let i = 1; i <= month.days; i++) {
         // uj fogalom - callback fuggveny - nem ott futtatjuk, ahol szeretnenk hasznalni, hane majd kesobb, amikor itt az ideje lefuttatni
