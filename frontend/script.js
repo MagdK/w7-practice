@@ -17,6 +17,43 @@ const header = (logo) => {
     `
 }
 
+// Code from yesterday
+const monthSection = (id, h1, days) => {
+    return `
+    <section id="${id}">
+        <h1>${h1}</h1>
+        <div class="days">${days}</div>
+    </section>
+    `;
+}
+
+
+
+// 3 Components = HTML elements we would like to add to the document later
+
+const dayCard = (year, month, day) => {
+    return `
+    <div class="card">
+        <time>${year}</time>
+        <time>${month}</time>
+        <time>${day}</time>
+        <button class="card-btn">Get day name</button>
+    </div>
+    `
+}
+
+const dayCards = (month, callDayCard) => {
+    let toReturn = "";
+    for (let i = 1; i <= month.days; i++) {
+        // uj fogalom - callback fuggveny - nem ott futtatjuk, ahol szeretnenk hasznalni, hane majd kesobb, amikor itt az ideje lefuttatni
+        toReturn += callDayCard(2022, month.nth, i);
+    }
+    return toReturn;
+}
+// End of code from yesterday
+
+
+
 const loadEvent = async _ => {
     // 1. GET DATA
     // ez a ket sor belement a valtozoba fetchrol jovo adatot, masodik sorban feldolgozzuk
