@@ -7,7 +7,7 @@ function Country(name, short, capital, population, flag, continent) {
     this.continent = continent;
 }
 
-/* // Components
+// Components
 const header = (logo) => {
     return `
     <header>
@@ -15,16 +15,15 @@ const header = (logo) => {
         <button></button>
     </header>
     `
-} */
+}
 
 
 // Code from yesterday
-const countryCards = (id, h1, days) => {
+const countrySection = (id, h1) => {
     return `
-    <section id="${id}">
+    <div>
         <h1>${h1}</h1>
-        <div class="days">${days}</div>
-    </section>
+    </div>
     `;
 }
 
@@ -35,21 +34,20 @@ const countryCards = (id, h1, days) => {
 const countryCard = (name, short, population, continet, flag) => {
     return `
     <div class="card">
-        <h1>${country.name.common}</h1>
-        <p>${country.cca3}</p>
-        <p>${country.cca3}</p>
-        <p>${country.population}</p>
-        <p>${country.continents[0]}</p>
-        <p>${country.flags.svg}</p>
+        <h1>${name}</h1>
+        <p>${short}</p>
+        <p>${population}</p>
+        <p>${continent}</p>
+        <p>${flag}</p>
     </div>
     `
 }
 
-const countryCards = (month, callCountryCard) => {
+const countryCards = (country, callCountryCard) => {
     let toReturn = "";
-    for (let i = 1; i <= month.days; i++) {
+    for (let i = 1; i <= 100; i++) {
         // uj fogalom - callback fuggveny - nem ott futtatjuk, ahol szeretnenk hasznalni, hane majd kesobb, amikor itt az ideje lefuttatni
-        toReturn += callDayCard(2022, month.nth, i);
+        toReturn += callCountryCard(country.name.common, country.cca3, country.population, country.continents[0], country.flags.svg);
     }
     return toReturn;
 }
@@ -78,7 +76,9 @@ const loadEvent = async _ => {
     const rootElement = document.getElementById("root");
     rootElement.insertAdjacentHTML("beforeend", header("Countries"));
 
-    // Code from w1
+
+    // CODE FROM WEEK 1 - this works
+
     /* for (const country of countryArr) {
         //console.log(country.name.common);
         
@@ -94,16 +94,21 @@ const loadEvent = async _ => {
         `)
         
     } */
+
     let content = ""
 
-    for (const month of months) {
-        content += countryCards(month.id, month.name, countryCard(month, dayCard));
+    for (const country of countries) {
+        content += countrySection(country.name.common,country.cca3, countryCards(country, countryCard));
     }  
     document.getElementById("root").insertAdjacentHTML("beforeend", content);
 
 }
 
 window.addEventListener("load", loadEvent); 
+
+
+
+
 
 // Feladat szunetre - jelenitsuk meg kartyakent ezt a kodot. Country-t. Egy komponensbe mentsuk el a countryCard componensbe, ezt hivjuk meg es iteraljon vegig. 
 // legyen 3-as lepcso mint tegnap - counrtyCard komponenst - countryCards
