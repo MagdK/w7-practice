@@ -7,7 +7,7 @@ function Country(name, short, capital, population, flag, continent) {
     this.continent = continent;
 }
 
-// Components
+/* // Components
 const header = (logo) => {
     return `
     <header>
@@ -15,10 +15,11 @@ const header = (logo) => {
         <button></button>
     </header>
     `
-}
+} */
+
 
 // Code from yesterday
-const monthSection = (id, h1, days) => {
+const countryCards = (id, h1, days) => {
     return `
     <section id="${id}">
         <h1>${h1}</h1>
@@ -31,18 +32,20 @@ const monthSection = (id, h1, days) => {
 
 // 3 Components = HTML elements we would like to add to the document later
 
-const dayCard = (year, month, day) => {
+const countryCard = (name, short, population, continet, flag) => {
     return `
     <div class="card">
-        <time>${year}</time>
-        <time>${month}</time>
-        <time>${day}</time>
-        <button class="card-btn">Get day name</button>
+        <h1>${country.name.common}</h1>
+        <p>${country.cca3}</p>
+        <p>${country.cca3}</p>
+        <p>${country.population}</p>
+        <p>${country.continents[0]}</p>
+        <p>${country.flags.svg}</p>
     </div>
     `
 }
 
-const dayCards = (month, callDayCard) => {
+const countryCard = (month, callCountryCard) => {
     let toReturn = "";
     for (let i = 1; i <= month.days; i++) {
         // uj fogalom - callback fuggveny - nem ott futtatjuk, ahol szeretnenk hasznalni, hane majd kesobb, amikor itt az ideje lefuttatni
@@ -75,7 +78,8 @@ const loadEvent = async _ => {
     const rootElement = document.getElementById("root");
     rootElement.insertAdjacentHTML("beforeend", header("Countries"));
 
-    for (const country of countryArr) {
+    // Code from w1
+    /* for (const country of countryArr) {
         //console.log(country.name.common);
         
         root.insertAdjacentHTML("beforeend", `
@@ -89,7 +93,13 @@ const loadEvent = async _ => {
             </section>
         `)
         
-    }
+    } */
+    let content = ""
+
+    for (const month of months) {
+        content += countryCards(month.id, month.name, countryCard(month, dayCard));
+    }  
+    document.getElementById("root").insertAdjacentHTML("beforeend", content);
 
 }
 
