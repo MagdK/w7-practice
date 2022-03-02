@@ -18,42 +18,6 @@ const header = (logo) => {
 }
 
 
-// Code from yesterday
-const countrySection = (id, h1) => {
-    return `
-    <div>
-        <h1>${h1}</h1>
-    </div>
-    `;
-}
-
-
-
-// 3 Components = HTML elements we would like to add to the document later
-
-const countryCard = (name, short, population, continet, flag) => {
-    return `
-    <div class="card">
-        <h1>${name}</h1>
-        <p>${short}</p>
-        <p>${population}</p>
-        <p>${continent}</p>
-        <p>${flag}</p>
-    </div>
-    `
-}
-
-const countryCards = (country, callCountryCard) => {
-    let toReturn = "";
-    for (let i = 1; i <= 100; i++) {
-        // uj fogalom - callback fuggveny - nem ott futtatjuk, ahol szeretnenk hasznalni, hane majd kesobb, amikor itt az ideje lefuttatni
-        toReturn += callCountryCard(country.name.common, country.cca3, country.population, country.continents[0], country.flags.svg);
-    }
-    return toReturn;
-}
-// End of code from yesterday
-
-
 
 const loadEvent = async _ => {
     // 1. GET DATA
@@ -79,7 +43,7 @@ const loadEvent = async _ => {
 
     // CODE FROM WEEK 1 - this works
 
-    /* for (const country of countryArr) {
+    for (const country of countryArr) {
         //console.log(country.name.common);
         
         root.insertAdjacentHTML("beforeend", `
@@ -93,13 +57,13 @@ const loadEvent = async _ => {
             </section>
         `)
         
-    } */
+    }
 
     let content = ""
 
-    for (const country of countries) {
+   /*  for (const country of countries) {
         content += countrySection(country.name.common,country.cca3, countryCards(country, countryCard));
-    }  
+    }   */
     document.getElementById("root").insertAdjacentHTML("beforeend", content);
 
 }
