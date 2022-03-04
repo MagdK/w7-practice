@@ -1,39 +1,67 @@
+const formHTML = () => {
+    return `
+    <form>
+        <input name="input1" id="input1" type="text" />
+        <input name="input2" id="input2" type="text" />
+        <input name="input3" id="input3" type="text" />
+        <select name="animals" id="animals">
+            <option value="both5555">Both</option>
+            <option value="cats5555">Cats</option>
+            <option value="dogs5555">Dogs</option>
+        </select>
+        <button>Send</button>
+    </form>
+    `;
+};
 
-function inIt(mathFunction) { //paraméterek mindig function scopeok
-    var a = 5;
-    var b = 6;
+function loadEvent() {
+    console.log("load");
+    const rootElement = document.getElementById("root")
+
+    rootElement.insertAdjacentHTML("beforeend", formHTML())
+
+    //belementjük a formot egy változóba
+    const form = rootElement.querySelector("form")
+
+    //input esemény
+    const inputList = document.querySelectorAll("input")
+
+    /* 
+    for (const input of inputList) {
+        input.addEventListener("input", function(e) {                   ugyanaz mint a map pár sorral lejjebb
+            console.log(e.target.value);
+        })
+    }
+    }
+    */
+
+    Array.from(inputList).map(function(input){
+        input.addEventListener("input", function(e) {
+            console.log(e.target.value);
+        })
+    })
 
     
-    if (a < b){
-        let c = mathFunction(b, a)
-        console.log(c);
-       /*  (function() {
-            var c = b - a;
-            console.log(c);
-        })();   */
-    }else{
-        let c = mathFunction(a, b)
-        console.log(c);
-    /*     (function (){
-            var c = a - b;
-        })(); */
-    };
+    //select esemény 
+    form.querySelector("select").addEventListener("input", function(e){
+        console.log(e.target.value);
+    })
 
-    //console.log(c);
-    //console.log(c);
-    //a c látszódik az if után
+
+    //sumbit esemény
+    form.addEventListener("submit", function(e){               //form a sor elején: már elmentettük egy változóba
+        e.preventDefault()
+        console.log(e.target);
+    })
+    
+
 }
+window.addEventListener("load", loadEvent);
 
-const inItC = (firstNumber, secondNumber) => {
-    return firstNumber - secondNumber;
-}
 
-const inItD = (firstNumber, secondNumber) => {
-    return firstNumber * secondNumber;
-}
 
-inIt(inItD);
 
-//készítsétek el a szokásos load eseményt új brachbe events néven és csináljatok egy formot, és a formban legyen 3 input mező, be is lehet css elni szöveges input mezők legyenek, egy gomb legyen benne és az input mezőkre mindegyikre input eseményt tegyetek rá, mindegyik inputon legyen input esemény, clgolja ki az értékét az input mezőnek, js ből adjuk hozzá a root id divhez a formot , clg az input eseményre az input mezők értékét
-//15.50
+//formok esetében nem click event hanem submit event
+//sumbit eseményt NEM a gombra tesszük hanem a formra
+
 
