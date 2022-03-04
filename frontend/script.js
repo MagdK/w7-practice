@@ -14,7 +14,7 @@ const formHTML = () => {
     `;
 };
 
-function loadEvent() {
+async function loadEvent() {
     console.log("load");
     const rootElement = document.getElementById("root")
 
@@ -53,12 +53,35 @@ function loadEvent() {
         e.preventDefault()
         console.log(e.target);
     })
+
+    const nasaApiKey = "miqERbSb62hxqg4SbPUozPDc1WtXjrIhv6V0NPfz"
+
+    const requestedDate = "2022-02-22"
     
+    const apod = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}&date=${requestedDate}`)
+
+    //console.log(apod);
+
+    const apodJson = await apod.json();
+
+    //console.log(apodJson.explanation);
+
+    fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}&date=${requestedDate}`).then(
+        function (apodResponse){
+            console.log(apodResponse);
+            apodResponse.json().then(
+                function(apodResponseJson) {
+                    console.log(apodResponseJson.explanation);
+                }
+            )
+        }
+    )
 
 }
 window.addEventListener("load", loadEvent);
 
-
+//returnöl a fetch - obj értékpárokat
+//metódusok is lehetnek elmentve egy egy kulcsra és ez a then
 
 
 //formok esetében nem click event hanem submit event
