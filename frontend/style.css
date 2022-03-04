@@ -1,65 +1,48 @@
-#root header{
-  position: fixed;
-  width: 100%;
-  height: 60px;
-  background-color: #1a24fb;
-  width: 100%;
+
+#root{
+  position: relative;
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
 }
 
-#root header button{
+#root form{
   position: absolute;
-  right: 0;
-  top: 0;
-  width: 40px;
-  height: 40px;
-  margin: 10px;
+  left: 100px;
+  top: 150px;
+  margin: 30px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 500px;
+  align-items: center;
+  justify-content: center;
 }
 
-#root header button *{
-  pointer-events: none;
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-#root header button svg rect{
-  fill: #ffffff;
-  transform-origin: center;
-  transform-box: fill-box;
-  transition: opacity 400ms, transform 400ms;
+button{
+  position: absolute;
+  top: 550px;
+  width: 250px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 3px;
+  left: 50px;
 }
 
-#root header button svg rect:nth-child(1){
-  transform: translate(10px, 10px);
-}
-
-#root header button svg rect:nth-child(2){
-  transform: translate(10px, 19px);
-}
-
-#root header button svg rect:nth-child(3){
-  transform: translate(10px, 28px);
-}
-
-/* clicked */
-#root header button.clicked svg rect:nth-child(1){
-  transform: translate(20px, 20px) rotate(45deg);
-}
-
-#root header button.clicked svg rect:nth-child(2){
-  transform: translate(10px, 19px);
-  opacity: 0;
-}
-
-#root header button.clicked svg rect:nth-child(3){
-  transform: translate(20px, 20px) rotate(-45deg);
-}
-
-#card{
-  background-color: antiquewhite;
-  border: 2px solid black;
-  margin: 50px;
-}
-
-#card img{
-  width:  300px;
-  height: 300px;
-  object-fit: contain;
+button:hover{
+  background-color: #45a049;
 }
