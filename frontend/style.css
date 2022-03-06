@@ -1,11 +1,11 @@
 
-#root{
+#root {
   position: relative;
   font-family: 'EB Garamond', serif;
   font-size: 20px;
 }
 
-#root form{
+#root form {
   position: absolute;
   left: 100px;
   top: 150px;
@@ -20,29 +20,28 @@
 
 input[type=text], select {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
+  padding: 15px 20px;
+  margin: 20px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: solid 1px rgb(74, 74, 74);
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-button{
+button {
   position: absolute;
-  top: 550px;
-  width: 250px;
-  background-color: #4CAF50;
+  top: 400px;
+  width: 100%;
+  background-color: #484848;
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   letter-spacing: 3px;
-  left: 50px;
+  left: 0;
 }
 
-button:hover{
-  background-color: #45a049;
+button:hover {
+  background-color: #54607e;
 }
