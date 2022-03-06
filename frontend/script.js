@@ -15,20 +15,20 @@ const formHTML = () => {
 };
 
 async function loadEvent() {
-    console.log("load");
-    const rootElement = document.getElementById("root")
+    // console.log("load");
+    const rootElement = document.getElementById("root");
 
-    rootElement.insertAdjacentHTML("beforeend", formHTML())
+    rootElement.insertAdjacentHTML("beforeend", formHTML());
 
     //belementjük a formot egy változóba
-    const form = rootElement.querySelector("form")
+    const form = rootElement.querySelector("form");
 
-    //input esemény
-    const inputList = document.querySelectorAll("input")
+    //input event
+    const inputList = document.querySelectorAll("input");
 
     /* 
     for (const input of inputList) {
-        input.addEventListener("input", function(e) {                   ugyanaz mint a map pár sorral lejjebb
+        input.addEventListener("input", function(e) {                   // ugyanaz mint a map pár sorral lejjebb
             console.log(e.target.value);
         })
     }
@@ -37,37 +37,39 @@ async function loadEvent() {
 
     Array.from(inputList).map(function(input){
         input.addEventListener("input", function(e) {
-            console.log(e.target.value);
-        })
-    })
+            // console.log(e.target.value);
+        });
+    });
 
     
-    //select esemény 
+    //select event 
     form.querySelector("select").addEventListener("input", function(e){
-        console.log(e.target.value);
-    })
+        // console.log(e.target.value);
+    });
 
 
-    //sumbit esemény
-    form.addEventListener("submit", function(e){               //form a sor elején: már elmentettük egy változóba
+    //sumbit event
+    form.addEventListener("submit", function(e){               //form elol: mar elmentettuk valtozoba
         e.preventDefault()
-        console.log(e.target);
-    })
+        // console.log(e.target);
+    });
 
-    const nasaApiKey = "miqERbSb62hxqg4SbPUozPDc1WtXjrIhv6V0NPfz"
+    const nasaApiKey = "1mTCOFLk0Nof1ZPgSEShro6KaAHddyvNnq8rIoLT";
 
-    const requestedDate = "2022-02-22"
+    const requestedDate = "2000-01-01";
     
-    const apod = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}&date=${requestedDate}`)
+    const apod = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}&date=${requestedDate}`);
 
     //console.log(apod);
 
-    const apodJson = await apod.json();
+    const apodJson = await apod.json(); //jason metodus, amit meghivunk rajta, ezzel atkonvertaljuk
 
-    //console.log(apodJson.explanation);
+    // console.log(apodJson.explanation); //(apodJson.explanation) => szep hosszu szuveg megjelenik a console-ban
 
+
+    // Metodusok egyebkent onmaguktol is el tudnak inditani ujabb metodusokat. Ezt a lancolatot nem elemezzuk, de ranezunk hogyan lehet ezt a fetch-et hasznalni.
     fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}&date=${requestedDate}`).then(
-        function (apodResponse){
+        function (apodResponse) {
             console.log(apodResponse);
             apodResponse.json().then(
                 function(apodResponseJson) {
@@ -77,7 +79,7 @@ async function loadEvent() {
         }
     )
 
-}
+};
 window.addEventListener("load", loadEvent);
 
 //returnöl a fetch - obj értékpárokat
@@ -88,3 +90,20 @@ window.addEventListener("load", loadEvent);
 //sumbit eseményt NEM a gombra tesszük hanem a formra
 
 
+/* 
+PROMISE
+
+!!!nem a mostani vizsgak reszei!!!
+Az egesz fetch alatt van egy masik reteg, ezt ugy hivjuk h,goy promise-ok. 
+Promisok azt segitik, hogy kulonbozo async muveletek, barmi amire varni kell, hogy a js tudja meddig kell varni pl egy fetcheles eredmenyere. 
+
+Harom allapota van egy promise-nak
+1. PENDING Teljesult, nem teljesult? - igereteinknek a valos eletben is ilyen statuszai vannak. Ez csak igeret
+
+Lezarodik az igeret, ezutan:
+
+2. Teljesult
+3. Nem teljesult
+
+Amikor teljesul, azt onnan latjuk, hogy nem dob hibat a promise. Ha nem teljesul, hibat dob. 
+ */
