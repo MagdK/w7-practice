@@ -76,19 +76,7 @@ function loadEvent() {
         //meg kell hivni egy metodust, ami megakadalyozza a submit esemeny alapertelmezett lefutasi eloirasat - prevent default
         event.preventDefault();
         console.log(event.target); // => ott lesz a form tag, a mi targetunk a console-ban
-    });
-
-    
-    
-
-
-    // //sumbit event
-    // form.addEventListener("submit", function(e){               //form a sor elején: már elmentettük egy változóba
-    //     e.preventDefault()
-    //     console.log(e.target);
-    // }) 
-    
-    
+    });   
 
 }
 window.addEventListener("load", loadEvent);
